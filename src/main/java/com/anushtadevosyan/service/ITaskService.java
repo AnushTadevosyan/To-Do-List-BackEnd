@@ -15,4 +15,6 @@ public interface ITaskService {
 	public TaskResponseDTO markTaskAsCompleted(Long taskID);
 	
 	public TaskResponseDTO addDueDateToTaskGivenTaskID(Long taskID, String dueDate);
+	
+	public TaskResponseDTO markTaskAsPriority(Long taskID);
 }

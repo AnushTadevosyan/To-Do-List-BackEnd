@@ -45,6 +45,14 @@ public class TaskService implements ITaskService {
 	}
 	
 	
+	public TaskResponseDTO markTaskAsPriority(Long taskID) {
+		TaskEntity taskGivenIDFromDatabase = taskReposity.getTaskfromDatabaseGivenTaskID(taskID);
+		taskGivenIDFromDatabase.setIsPriority(true);;
+		taskGivenIDFromDatabase = taskReposity.save(taskGivenIDFromDatabase);
+		return populateTaskResponseFromTaskEntity(taskGivenIDFromDatabase);
+		
+	}
+	
 	//---------------------------HELPER METHODS -----------------------
 
 	private TaskResponseDTO populateTaskResponseFromTaskEntity(TaskEntity responseTaskEntity) {

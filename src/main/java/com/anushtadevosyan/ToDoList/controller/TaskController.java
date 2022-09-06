@@ -50,4 +50,8 @@ public class TaskController {
 	}
 	
 	//mark task as priority
+	@RequestMapping(method=RequestMethod.POST, path = "/todolist/markTaskAsPriorityGivenID")
+	public TaskResponseDTO markTaskAsPriority(@RequestBody TaskIDBean taskIDBean) {
+		return taskservice.markTaskAsPriority(taskIDBean.getTaskID());
+	}
 }
