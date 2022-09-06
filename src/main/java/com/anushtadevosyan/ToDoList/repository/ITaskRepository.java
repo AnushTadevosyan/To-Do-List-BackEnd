@@ -16,6 +16,10 @@ public interface ITaskRepository extends JpaRepository<TaskEntity, Long> {
 //			+ "FROM todolist_tasks as task WHERE task.userID = ?1")
 	@Query("SELECT c FROM todolist_tasks c WHERE c.userID=?1")
 	public List<TaskEntity> getAllTasksForTheUser(Long userID);
+	
+	
+	@Query("SELECT c FROM todolist_tasks c WHERE c.taskID=?1")
+	public TaskEntity getTaskfromDatabaseGivenTaskID(Long taskID);
 		
 		
 	

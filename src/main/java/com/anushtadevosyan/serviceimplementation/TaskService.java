@@ -23,6 +23,24 @@ public class TaskService implements ITaskService {
 		
 		TaskEntity responseTaskEntity = new TaskEntity();
 		responseTaskEntity = saveTaskToDataBase(newTask);
+		return populateTaskResponseFromTaskEntity(responseTaskEntity);
+
+	}
+	
+	public TaskResponseDTO markTaskAsCompleted(Long taskID) {
+		//step 1: get the task from database based on ID
+		TaskEntity taskGivenIDFromDatabase = taskReposity.getTaskfromDatabaseGivenTaskID(taskID);
+		//step 2: change the status of the task and save it to DB
+		taskGivenIDFromDatabase.setCompleted(true);
+		taskGivenIDFromDatabase = taskReposity.save(taskGivenIDFromDatabase);
+		return populateTaskResponseFromTaskEntity(taskGivenIDFromDatabase);
+		
+	}
+	
+	
+	//---------------------------HELPER METHODS -----------------------
+
+	private TaskResponseDTO populateTaskResponseFromTaskEntity(TaskEntity responseTaskEntity) {
 		TaskResponseDTO taskResponseDTO = new TaskResponseDTO();
 		taskResponseDTO.setCompleted(responseTaskEntity.isCompleted());
 		taskResponseDTO.setDueDate(responseTaskEntity.getDueDate());
@@ -31,11 +49,8 @@ public class TaskService implements ITaskService {
 		taskResponseDTO.setTaskText(responseTaskEntity.getTaskText());
 		taskResponseDTO.setUserID(responseTaskEntity.getUserID());
 		return taskResponseDTO;
+		
 	}
-	
-	
-	//------helper methods ----
-
 	private TaskEntity saveTaskToDataBase(TaskBean task) {
 		TaskEntity taskEntity = new TaskEntity();
 		taskEntity.setCompleted(task.isCompleted());

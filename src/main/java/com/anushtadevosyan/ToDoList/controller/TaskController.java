@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anushtadevosyan.ToDoList.bean.TaskBean;
+import com.anushtadevosyan.ToDoList.bean.TaskIDBean;
 import com.anushtadevosyan.ToDoList.bean.UserIDForTaskBean;
 import com.anushtadevosyan.ToDoList.entity.TaskEntity;
 import com.anushtadevosyan.ToDoList.responseDTO.TaskResponseDTO;
@@ -28,12 +29,17 @@ public class TaskController {
 	//add task DONE
 	
 	//get all tasks of that user 
+	//database returns entity. You have to convert it to responseDTO manually
 	@RequestMapping(method=RequestMethod.POST, path = "/todolist/getAllTasksForUserGivenID")
 	public List<TaskEntity> getAllTasksForThatUserGivenID(@RequestBody UserIDForTaskBean userID){
 		return taskservice.getAllTasksForTheUserGivenID(userID.getUserID());
 	}
 	
 	//mark task as completed
+	@RequestMapping(method=RequestMethod.POST, path = "/todolist/markTaskAsCompletedGivenID")
+	public TaskResponseDTO markTaskAsCompletedBasedOnTaskID(@RequestBody TaskIDBean taskIDBean) {
+		return taskservice.markTaskAsCompleted(taskIDBean.getTaskID());
+	}
 	
 	//add due date to task
 	

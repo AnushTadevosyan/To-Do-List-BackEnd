@@ -11,4 +11,6 @@ public interface ITaskService {
 	public TaskResponseDTO addNewTask (TaskBean newTask);
 	
 	public List<TaskEntity> getAllTasksForTheUserGivenID(Long userID);
+	
+	public TaskResponseDTO markTaskAsCompleted(Long taskID);
 }
