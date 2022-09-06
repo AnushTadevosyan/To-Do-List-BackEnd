@@ -1,5 +1,7 @@
 package com.anushtadevosyan.serviceimplementation;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +46,10 @@ public class TaskService implements ITaskService {
 		taskEntity = taskReposity.save(taskEntity);
 		
 		return taskEntity;
+	}
+	
+	public List<TaskEntity> getAllTasksForTheUserGivenID(Long userID){
+		
+		return taskReposity.getAllTasksForTheUser(userID);
 	}
 }
