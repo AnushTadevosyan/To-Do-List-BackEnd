@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.anushtadevosyan.ToDoList.bean.TaskBean;
 import com.anushtadevosyan.ToDoList.bean.TaskIDBean;
+import com.anushtadevosyan.ToDoList.bean.TaskIDandDueDate;
 import com.anushtadevosyan.ToDoList.bean.UserIDForTaskBean;
 import com.anushtadevosyan.ToDoList.entity.TaskEntity;
 import com.anushtadevosyan.ToDoList.responseDTO.TaskResponseDTO;
@@ -42,6 +43,11 @@ public class TaskController {
 	}
 	
 	//add due date to task
+	@RequestMapping(method=RequestMethod.POST, path = "/todolist/addDueDateToTask")
+	public TaskResponseDTO addDueDateToTaskBasedOnTaskID(@RequestBody TaskIDandDueDate taskIDandDueDate) {
+		
+		return taskservice.addDueDateToTaskGivenTaskID(taskIDandDueDate.getTaskID(), taskIDandDueDate.getDueDate());
+	}
 	
 	//mark task as priority
 }

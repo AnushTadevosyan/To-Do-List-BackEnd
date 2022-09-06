@@ -13,4 +13,6 @@ public interface ITaskService {
 	public List<TaskEntity> getAllTasksForTheUserGivenID(Long userID);
 	
 	public TaskResponseDTO markTaskAsCompleted(Long taskID);
+	
+	public TaskResponseDTO addDueDateToTaskGivenTaskID(Long taskID, String dueDate);
 }

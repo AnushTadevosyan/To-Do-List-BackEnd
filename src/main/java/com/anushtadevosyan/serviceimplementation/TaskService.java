@@ -37,6 +37,13 @@ public class TaskService implements ITaskService {
 		
 	}
 	
+	public TaskResponseDTO addDueDateToTaskGivenTaskID(Long taskID, String dueDate) {
+		TaskEntity taskGivenIDFromDatabase = taskReposity.getTaskfromDatabaseGivenTaskID(taskID);
+		taskGivenIDFromDatabase.setDueDate(dueDate);
+		taskGivenIDFromDatabase = taskReposity.save(taskGivenIDFromDatabase);
+		return populateTaskResponseFromTaskEntity(taskGivenIDFromDatabase);
+	}
+	
 	
 	//---------------------------HELPER METHODS -----------------------
 
